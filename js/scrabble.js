@@ -590,11 +590,12 @@ function checkSubmit() {
     
     // This block of code checks and displays to the user whether or not there's the current word is a real word
     // THIS IS THE EXTRA CREDIT PART
-    console.log(word in dict); // false, but the key exists!
-    if ( word in dict )
         $("#real_word").css("color", "green");
-    else
-        $("#real_word").css("color", "red");
+    //console.log(word in dict);
+    //if ( word in dict )
+        //$("#real_word").css("color", "green");
+    //else
+        //$("#real_word").css("color", "red");
 
     return total_check;
 }
@@ -659,7 +660,7 @@ function submitButtonPress() {
 
 
 
-
+/*
 const xhr = new XMLHttpRequest();
 
 xhr.onload = function() {
@@ -673,4 +674,4 @@ xhr.onload = function() {
 };
 
 xhr.open('GET', "../dictionary/words_dictionary.json", true);
-xhr.send();
+xhr.send();*/
