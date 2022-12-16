@@ -1,0 +1,149 @@
+/*
+Author: Dalton Lee
+Created: December 1, at 8:00 PM
+Description: 
+
+File: style.css
+GUI Assignment: Implementing a Bit of Scrabble with Drag-and-Drop
+Dalton Lee, UMass Lowell Computer Science Student, dalton_lee@student.uml.edu
+Copyright (c) 2021 by Dalton. All rights reserved. May be freely copied or
+excerpted for educational purposes with credit to the author.
+updated by Dalton Lee on December 6, at 10:00 PM
+*/
+
+/* background color for webpage */
+body {
+    background-color: rgba(40, 86, 48, 0.621);
+    margin: 0px;
+    font-family: Verdana, sans-serif;
+}
+
+/* Make div that contains 3 subdivs have a nice background centered in middle of page body */
+#mainSect {
+    text-align: center;
+    margin: 0 auto 0 auto;
+    width: 780px;
+    background-color: rgb(240, 240, 240);
+    border: 4mm ridge rgba(211, 220, 50, .6);
+    padding: 1em;
+    height: 700px;
+}
+
+#mainSect h1 {
+    padding-bottom: 0.5em;
+    border-bottom: 3px solid rgb(79, 0, 170);
+}
+
+/* Style the divs in the info div to be inline with eachother and wide enough for each */
+#infoDiv div {
+    display: inline-block;
+    margin-bottom: 0.5em;
+}
+#infoDiv #score {
+    width: 6em;
+    text-align:left;
+    color: rgb(9, 114, 0);
+}
+#infoDiv #high_score {
+    width: 4em;
+    text-align:left;
+    font-weight: bold;
+    color: rgb(156, 154, 0);
+}
+#infoDiv #word {
+    width: 7em;
+    text-align:left;
+    color: rgb(165, 0, 0);
+}
+#infoDiv #remaining_tiles {
+    width: 3em;
+    text-align:left;
+    color: rgb(79, 0, 170);
+}
+
+/* Keep all 3 main sub divs used in html file centered and stacked on top of eachother */
+.boardDiv {
+    text-align: center;
+    float: left;
+    width: 100%;
+    margin: 0 auto 0 auto;
+}
+
+.holderDiv {
+    text-align: center;
+    float: left;
+    width: 100%;
+    margin: 0 auto 0 auto;
+}
+
+.controlDiv {
+    text-align: center;
+    float: left;
+    width: 100%;
+    margin: 20px auto 30px auto;
+}
+
+/* classes for board squares to give a little stylin to */
+.boardBlank {
+    border: 3px solid black;
+}
+.boardDoubleWord {
+    border: 3px solid black;
+}
+.boardDoubleLetter {
+    border: 3px solid black;
+}
+
+.holderImage {
+    border: 3px solid rgb(240, 240, 240);
+}
+
+/* control form style */
+.controlDiv h4 {
+    margin-top: 0;
+}
+
+/* CSS button style #55 taken from https://getcssscan.com/css-buttons-examples */
+.button-55 {
+    align-self: center;
+    background-color: #fff;
+    background-image: none;
+    background-position: 0 90%;
+    background-repeat: repeat no-repeat;
+    background-size: 4px 3px;
+    border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+    box-sizing: border-box;
+    color: #41403e;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Neucha, sans-serif;
+    font-size: 1rem;
+    line-height: 23px;
+    outline: none;
+    padding: .75rem;
+    text-decoration: none;
+    transition: all 235ms ease-in-out;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-55:active {
+    transform: translate3d(0, 2px, 0);
+}
+
+
+/* For highlighting droppables when a draggable is selected */
+.highlight_nonactive {
+    border: 3px solid rgb(0, 132, 255);
+}
+.highlight_active {
+    border: 3px solid rgb(0, 255, 64);
+}

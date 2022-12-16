@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--
+Author: Dalton Lee
+Created: December 1, at 8:00 PM
+Description: 
+
+File: index.html
+GUI Assignment: Implementing a Bit of Scrabble with Drag-and-Drop
+Dalton Lee, UMass Lowell Computer Science Student, dalton_lee@student.uml.edu
+Copyright (c) 2021 by Dalton. All rights reserved. May be freely copied or
+excerpted for educational purposes with credit to the author.
+updated by Dalton Lee on December 6, at 10:00 PM
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Drag-and-Drop Scrabble</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script type = "text/javascript" src="../js/scrabble.js"></script>
+  </head>
+  <body>
+    <!-- 
+    Create div element to contain the main section of the page, for this webpage i'll be setting the body
+    to a background color and this div to white to make the page pop!
+    -->
+    <div id = "mainSect">
+      <h1>Drag-and-Drop Scrabble</h1>
+      <!-- 
+      Create div to hold all session information such as a game's current score, all time high score,
+      current word on the scrabble board, and the total remaining tiles in the game.
+      -->
+      <div id = "infoDiv">
+        <div>
+          <div class="label">Score:</div>
+          <div id="score">0 (+0)</div>
+        </div>
+        <div>
+          <div class="label">High Score:</div>
+          <div id="high_score">0</div>
+        </div>
+        <div>
+          <div class="label">Word:</div>
+          <div id="word"></div>
+        </div>
+        <div>
+          <div class="label">Remaining Tiles:</div>
+          <div id="remaining_tiles"></div>
+        </div>
+      </div>
+      <!-- 
+      Create div to hold all board square images, give special classes to the bonus squares!
+      -->
+      <div class="boardDiv">
+        <img src="../graphics/Scrabble_Board_Blank.png" height='70' width='70' draggable="false"
+          alt="Scrabble Board Blank" class="boardBlank" id = "boardSpace1">
+        <img src="../graphics/Scrabble_Board_Double_Word.png" height='70' width='70' draggable="false"
+          alt="Scrabble Board Double Word" class="boardDoubleWord" id = "boardSpace2">
+        <img src="../graphics/Scrabble_Board_Blank.png" height='70' width='70' draggable="false"
+          alt="Scrabble Board Blank" class="boardBlank" id = "boardSpace3">
+        <img src="../graphics/Scrabble_Board_Blank.png" height='70' width='70' draggable="false"
+          alt="Scrabble Board Blank" class="boardBlank" id = "boardSpace4">
+        <img src="../graphics/Scrabble_Board_Blank.png" height='70' width='70' draggable="false"
+          alt="Scrabble Board Blank" class="boardBlank" id = "boardSpace5">
+        <img src="../graphics/Scrabble_Board_Double_Letter.png" height='70' width='70' draggable="false"
+          alt="Scrabble Board Double Letter" class="boardDoubleLetter" id = "boardSpace6">
+        <img src="../graphics/Scrabble_Board_Blank.png" height='70' width='70' draggable="false"
+          alt="Scrabble Board Blank" class="boardBlank" id = "boardSpace7">
+      </div>
+      <!-- 
+      Create div to allow user to submit current word if conditions are met or reset the game
+      -->
+      <div class="controlDiv">
+        <h4>Fulfil these three requirements to submit</h4>
+        <form class="controlForm">
+          <p id = "two_letter">At least two letters are used</p>
+          <p id = "no_gaps">No gaps between letters</p>
+          <p id = "real_word">Word appears in dictionary</p>
+          <input type="button" value="Submit" class = "button-55" id = "submit_button" onclick="submitButtonPress()">
+          <input type="button" value="Restart Game" class = "button-55" id = "reset_button" onclick="startFresh()">
+        </form>
+      </div>
+      <!-- 
+      Create div to put the scrabble tile holder image in
+      -->
+      <div class="holderDiv">
+        <img src="../graphics/scrabble-tile-holder-406774_640.png" draggable="false"
+          alt="Scrabble Holder" class="holderImage" id = "holder">
+      </div>
+    </div>
+  </body>
+</html>
