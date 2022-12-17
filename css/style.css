@@ -26,7 +26,7 @@ body {
     background-color: rgb(240, 240, 240);
     border: 4mm ridge rgba(211, 220, 50, .6);
     padding: 1em;
-    height: 700px;
+    height: 740px;
 }
 
 #mainSect h1 {
@@ -53,7 +53,7 @@ body {
 #infoDiv #word {
     width: 7em;
     text-align:left;
-    color: rgb(165, 0, 0);
+    color: rgb(0, 165, 55);
 }
 #infoDiv #remaining_tiles {
     width: 3em;
@@ -73,7 +73,7 @@ body {
     text-align: center;
     float: left;
     width: 100%;
-    margin: 0 auto 0 auto;
+    margin: 0 auto 40px auto;
 }
 
 .controlDiv {
@@ -101,6 +101,10 @@ body {
 /* control form style */
 .controlDiv h4 {
     margin-top: 0;
+}
+
+#blank_tile_text {
+    width: 1em;
 }
 
 /* CSS button style #55 taken from https://getcssscan.com/css-buttons-examples */

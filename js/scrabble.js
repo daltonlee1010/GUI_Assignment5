@@ -490,6 +490,7 @@ function subtractIfMovedFromBoardPiece(tile_ID, letter) {
     }
 }
 
+// given tile_ID, find the letter associated with it
 function findLetterClassToPerformSub(tile_ID) {
     var potential_board_ID = 0;
     var actual_board_ID = 0;
@@ -564,7 +565,7 @@ function updateWord() {
     checkSubmit();
 }
 
-
+// Before submitting, check to see if three important requirements are met (no gaps, two letters, real word)
 function checkSubmit() {
     var total_check = true;
 
@@ -591,13 +592,16 @@ function checkSubmit() {
     // This block of code checks and displays to the user whether or not there's the current word is a real word
     // THIS IS THE EXTRA CREDIT PART
     $("#real_word").css("color", "green");
-    console.log(dict.includes(current_word));
     if(dict.includes(current_word)) {
+        console.log(current_word + " is a real word!");
         $("#real_word").css("color", "green");
+        $("#word").css("color", "rgb(0, 165, 55)");
     }
     else {
         total_check = false;
+        console.log(current_word + " is not a real word...");
         $("#real_word").css("color", "red");
+        $("#word").css("color", "rgb(165, 0, 0)");
     }
     return total_check;
 }
@@ -657,6 +661,7 @@ function submitButtonPress() {
     current_word_start_index = 99;
 }
 
+// When 'Replace Blank Tile' button is pressed, this is ran, replacing tile with character as long as it's a letter
 function blankTile() {
     for(var i = 0; i < current_tile_container.length; i++) {
         if(current_tile_container[i].current_droppable == "#holder") {
@@ -678,8 +683,7 @@ function blankTile() {
     console.log("No blank tile");
 }
 
-
-
+// load in dictionary for checking word validity functionality
 $.getJSON('../dictionary/words_dictionary.json', function(data) {
     $.each( data, function( key, val ) {
         dict.push(key.toUpperCase());
