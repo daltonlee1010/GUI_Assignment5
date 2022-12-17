@@ -591,8 +591,8 @@ function checkSubmit() {
     // This block of code checks and displays to the user whether or not there's the current word is a real word
     // THIS IS THE EXTRA CREDIT PART
     $("#real_word").css("color", "green");
-    console.log(dict.includes(word));
-    if(dict.includes(word)) {
+    console.log(dict.includes(current_word));
+    if(dict.includes(current_word)) {
         $("#real_word").css("color", "green");
     }
     else {
@@ -658,7 +658,23 @@ function submitButtonPress() {
 }
 
 function blankTile() {
-    console.log("Found blank tile");
+    for(var i = 0; i < current_tile_container.length; i++) {
+        if(current_tile_container[i].current_droppable == "#holder") {
+            if($(current_tile_container[i].tile_ID).attr("class").split(' ')[0] == "_") {
+                var str = $("#blank_tile_text").val();
+                if(str.length === 1 && str.match(/[a-z]/i)) {
+                    str = str.toUpperCase();
+                    console.log("Valid letter of '" + str + "' given, converting blank tile");
+                    removeHolderPosition(current_tile_container[i].tile_ID.substring(1));
+                    $(current_tile_container[i].tile_ID).remove();
+                    placeOnFreeHolderSlot(str);
+                    return;
+                }
+                console.log("Blank tile found, invalid character as input, no conversion");
+                return;
+            }
+        }
+    }
     console.log("No blank tile");
 }
 
@@ -667,23 +683,5 @@ function blankTile() {
 $.getJSON('../dictionary/words_dictionary.json', function(data) {
     $.each( data, function( key, val ) {
         dict.push(key.toUpperCase());
-        console.log(key.toUpperCase());
     });
 });
-
-
-/*
-const xhr = new XMLHttpRequest();
-
-xhr.onload = function() {
-    if(xhr.status === 200) {
-        responseObject = JSON.parse(xhr.responseText);
-        dict = responseObject;
-        //for (var i = 0; i < responseObject.events.length; i++) { // Loop through object
-        //    console.log(responseObject.events[i].toUpperCase());
-        //}
-    }
-};
-
-xhr.open('GET', "../dictionary/words_dictionary.json", true);
-xhr.send();*/
