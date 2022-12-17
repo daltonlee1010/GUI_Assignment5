@@ -31,7 +31,7 @@ var highscore = 0;
 // Use current_word to keep track of all letters on board
 var current_word = "";
 // Dictionary to check if current_word is a word
-var dict = {};
+var dict = [];
 // Update positioning of elements based on other elements within window
 window.onresize = reportWindowSize;
 
@@ -590,13 +590,15 @@ function checkSubmit() {
     
     // This block of code checks and displays to the user whether or not there's the current word is a real word
     // THIS IS THE EXTRA CREDIT PART
+    $("#real_word").css("color", "green");
+    console.log(dict.includes(word));
+    if(dict.includes(word)) {
         $("#real_word").css("color", "green");
-    //console.log(word in dict);
-    //if ( word in dict )
-        //$("#real_word").css("color", "green");
-    //else
-        //$("#real_word").css("color", "red");
-
+    }
+    else {
+        total_check = false;
+        $("#real_word").css("color", "red");
+    }
     return total_check;
 }
 
@@ -655,9 +657,11 @@ function submitButtonPress() {
     current_word_start_index = 99;
 }
 
-
-
-
+$.getJSON('../dictionary/words_dictionary.json', function(data) {
+    $.each( data, function( key, val ) {
+        dict.push(key.toUpperCase());
+    });
+});
 
 
 /*
