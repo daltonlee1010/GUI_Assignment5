@@ -657,9 +657,17 @@ function submitButtonPress() {
     current_word_start_index = 99;
 }
 
+function blankTile() {
+    console.log("Found blank tile");
+    console.log("No blank tile");
+}
+
+
+
 $.getJSON('../dictionary/words_dictionary.json', function(data) {
     $.each( data, function( key, val ) {
         dict.push(key.toUpperCase());
+        console.log(key.toUpperCase());
     });
 });
 
