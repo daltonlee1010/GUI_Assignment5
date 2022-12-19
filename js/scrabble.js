@@ -170,6 +170,12 @@ function drawLetter() {
     var random = 0;
     var cond = true;
 
+    if(letter_weights.length <= 0) {
+        console.log("All tiles used up, can't draw additional tiles");
+        console.log("Restarting game");
+        startFresh();
+    }
+
     // While cond
     while(cond == true) {
         // Find a random number between 0 and the total quantity of all letters minus 1 for indexing purposes
@@ -664,9 +670,7 @@ function submitButtonPress() {
         placeOnFreeHolderSlot(chosen_piece);
     }
 
-    // Update word because the board just got wiped lol
-    for(var i = 0; i < current_tile_container.length; i++)
-        console.log(current_tile_container[i].tile_ID);
+    // Update word because the board just got wiped
     updateWord();
 
     // Update current word/score global variables
