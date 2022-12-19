@@ -1,14 +1,21 @@
 /*
 Author: Dalton Lee
 Created: December 1, at 8:00 PM
-Description: 
+Description: This assignment ties in all of what we learned throughout GUI 1 this semester.
+The goal is to program a website using html, css, js (with jQuery UI for drag and drop mechanics)
+that allows users to play "mini scrabble". The final product is one line, with two bonus squares, off a scrabble board
+with a rack underneath holding seven letter tiles that can be dragged and dropped onto the board squares.
+The program checks word is real (extra credit), has two letters and no gaps before allowing submission of a word.
+There is 100 tiles total to be drawn per game, games can be reset, a highscore across all games is tracked,
+bonus tiles properly handle score multipliers/additions upon display and submission and the current word is
+displayed to the user and gets updated as tiles are added/removed from the board.
 
 File: scrabble.js
 GUI Assignment: Implementing a Bit of Scrabble with Drag-and-Drop
 Dalton Lee, UMass Lowell Computer Science Student, dalton_lee@student.uml.edu
 Copyright (c) 2021 by Dalton. All rights reserved. May be freely copied or
 excerpted for educational purposes with credit to the author.
-updated by Dalton Lee on December 6, at 10:00 PM
+updated by Dalton Lee on December 19, at 4:00 PM
 */
 
 // Global variable for letter pieces including how much they're worth and the
