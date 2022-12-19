@@ -32,6 +32,8 @@ var highscore = 0;
 var current_word = "";
 // Dictionary to check if current_word is a word
 var dict = [];
+// If initialized use dict for word checking
+var use_dict = 0;
 // Update positioning of elements based on other elements within window
 window.onresize = reportWindowSize;
 
@@ -386,7 +388,7 @@ function boardBlankDropped(event, ui) {
     var blank_ID = $(this).attr("id");
     var tile_ID = ui.draggable.attr("id");
     var letter = $("#"+ui.draggable.attr("id")).attr('class').split(' ')[0];
-    
+
     subtractIfMovedFromBoardPiece(tile_ID, letter);
 
     placeOnBoardSlot(ui.draggable, blank_ID);
@@ -399,14 +401,13 @@ function boardBlankDropped(event, ui) {
     addToScoreboard(score_to_add);
     updateWord();
 }
-
 function boardDoubleWordDropped(event, ui) {
     // Commit to dropping on double word board space
     // Declare Variables
     var doubleWord_ID = $(this).attr("id");
     var tile_ID = ui.draggable.attr("id");
     var letter = $("#"+ui.draggable.attr("id")).attr('class').split(' ')[0];
-    
+
     subtractIfMovedFromBoardPiece(tile_ID, letter);
 
     placeOnBoardSlot(ui.draggable, doubleWord_ID);
@@ -420,14 +421,13 @@ function boardDoubleWordDropped(event, ui) {
     addToScoreboard(score_to_add);
     updateWord();
 }
-
 function boardDoubleLetterDropped(event, ui) {
     // Commit to dropping on double letter board space
     // Declare Variables
     var doubleLetter_ID = $(this).attr("id");
     var tile_ID = ui.draggable.attr("id");
     var letter = $("#"+ui.draggable.attr("id")).attr('class').split(' ')[0];
-    
+
     subtractIfMovedFromBoardPiece(tile_ID, letter);
 
     placeOnBoardSlot(ui.draggable, doubleLetter_ID);
@@ -461,6 +461,7 @@ function placeOnBoardSlot(dropped_obj, unused_space) {
     $("#"+dropped_obj.attr("id")).css("left", img_left).css("top", img_top).css("position", "absolute");
 }
 
+// This function takes in a letter and finds how much it's worth by looking into the letter_pieces array of objects
 function findWorthBasedOnLetter(dropped_letter) {
     var letter_worth = 0;
     for(var i = 0; i < Object.keys(letter_pieces).length; i++)
@@ -470,7 +471,6 @@ function findWorthBasedOnLetter(dropped_letter) {
         }
     return 0;
 }
-
 
 // The three functions below are used to perform proper subtractions based on letter tile worth
 function subtractIfMovedFromBoardPiece(tile_ID, letter) {
@@ -591,17 +591,25 @@ function checkSubmit() {
     
     // This block of code checks and displays to the user whether or not there's the current word is a real word
     // THIS IS THE EXTRA CREDIT PART
-    $("#real_word").css("color", "green");
-    if(dict.includes(current_word)) {
-        console.log(current_word + " is a real word!");
+    // If the $.getJSON succeeded perform dict check
+    if(use_dict) {
+        $("#real_word").css("color", "green");
+        if(dict.includes(current_word)) {
+            console.log(current_word + " is a real word!");
+            $("#real_word").css("color", "green");
+            $("#word").css("color", "rgb(0, 165, 55)");
+        }
+        else {
+            total_check = false;
+            console.log(current_word + " is not a real word...");
+            $("#real_word").css("color", "red");
+            $("#word").css("color", "rgb(165, 0, 0)");
+        }
+    }
+    // If the $.getJSON failed just assume everything is a real word
+    else {
         $("#real_word").css("color", "green");
         $("#word").css("color", "rgb(0, 165, 55)");
-    }
-    else {
-        total_check = false;
-        console.log(current_word + " is not a real word...");
-        $("#real_word").css("color", "red");
-        $("#word").css("color", "rgb(165, 0, 0)");
     }
     return total_check;
 }
@@ -672,6 +680,7 @@ function blankTile() {
                     console.log("Valid letter of '" + str + "' given, converting blank tile");
                     removeHolderPosition(current_tile_container[i].tile_ID.substring(1));
                     $(current_tile_container[i].tile_ID).remove();
+                    current_tile_container.splice(i, 1);
                     placeOnFreeHolderSlot(str);
                     return;
                 }
@@ -685,6 +694,7 @@ function blankTile() {
 
 // load in dictionary for checking word validity functionality
 $.getJSON('../dictionary/words_dictionary.json', function(data) {
+    use_dict = 1;
     $.each( data, function( key, val ) {
         dict.push(key.toUpperCase());
     });
